@@ -44,33 +44,29 @@ int main(void)
 
 
     mpz_nextprime (p, temp1);		    //Find 1st prime number greater than p
-    gmp_printf("prime p is:   %Zd\n\n", p); //prime p
+    //gmp_printf("prime p is:   %Zd\n\n", p); //prime p
     mpz_nextprime (q, temp2);               //Find 1st prime number greater than q
-    gmp_printf("prime q is:   %Zd\n\n", q); //prime q
+    //gmp_printf("prime q is:   %Zd\n\n", q); //prime q
 
     mpz_init_set_str(e, "65537", 10);
 
     mpz_mul(n, p, q);
-    gmp_printf("n is:   %Zd\n\n", n);       //n=p*q 8192 bits
+    //gmp_printf("n is:   %Zd\n\n", n);       //n=p*q 8192 bits
 
 
     mpz_sub(pp, p, temp3);            //pp=p-1
     mpz_sub(qq, q, temp3);            //qq=q-1
     mpz_mul(fn, pp, qq);              //f(n)=(p-1)*(q-1)
 
-    gmp_printf("f(n) is:   %Zd\n\n", fn); //f(n)
+    //gmp_printf("f(n) is:   %Zd\n\n", fn); //f(n)
 
     mpz_gcd(rop, n, e);                   //GCD between n & e
-    gmp_printf("gcd is:   %Zd\n\n", rop); //gcd
+    //gmp_printf("gcd is:   %Zd\n\n", rop); //gcd
 
     mpz_powm(d, e, temp4 , fn);           //d= (65537^-1) modn 
-    gmp_printf("d is :   %Zd\n\n", d);
+    //gmp_printf("d is :   %Zd\n\n", d);
 
-    //char plaintext;
-    //printf("Enter your plaintext: ");
-    //scanf("%s", plaintext);
-   
-   const char *plaintext = "RSA is one of the first practical public-key cryptosystems and is widely used for secure data transmission. In such a cryptosystem, the encryption key is public and differs from the decryption key which is kept secret. In RSA, this asymmetry is based on the practical difficulty of factoring the product of two large prime numbers, the factoring problem. RSA is made of the initial letters of the surnames of Ron Rivest, Adi Shamir, and Leonard Adleman, who first publicly described the algorithm in 1977. Clifford Cocks, an English mathematician working for the UK intelligence agency GCHQ, had developed an equivalent system in 1973, but it was not declassified until 1997.";
+    const char *plaintext = "RSA is one of the first practical public-key cryptosystems and is widely used for secure data transmission. In such a cryptosystem, the encryption key is public and differs from the decryption key which is kept secret. In RSA, this asymmetry is based on the practical difficulty of factoring the product of two large prime numbers, the factoring problem. RSA is made of the initial letters of the surnames of Ron Rivest, Adi Shamir, and Leonard Adleman, who first publicly described the algorithm in 1977. Clifford Cocks, an English mathematician working for the UK intelligence agency GCHQ, had developed an equivalent system in 1973, but it was not declassified until 1997.";
 
     mpz_import(pt, strlen(plaintext), 1, 1, 0, 0, plaintext); //Convert ASCII characters into integers
     gmp_printf("pt size is:   %Zd\n\n", pt);
